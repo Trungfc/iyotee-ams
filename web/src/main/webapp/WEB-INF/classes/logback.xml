@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<prudent>false</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>${catalina.base:-/tmp}/logs/iyotee-ams_%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 7 days' worth of history -->
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="FILE"/>
+	</root>
+
+	<logger name="com.iyotee.ams" level="ALL"/>
+
+</configuration>
