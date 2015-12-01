@@ -1,29 +1,21 @@
 package com.iyotee.ams.service.config;
 
-import java.util.Properties;
-
+import com.iyotee.ams.data.config.PersistenceConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
-@ComponentScan(basePackages="com.iyotee.ams.service")
+@ComponentScan(basePackages = "com.iyotee.ams.service")
 @PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = true)
 @EnableScheduling
 @EnableAspectJAutoProxy
 @EnableCaching
-//@Import(PersistenceConfig.class)
+@Import(PersistenceConfig.class)
 public class AppConfig {
 
 	@Autowired
@@ -34,13 +26,23 @@ public class AppConfig {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
 
-	/*@Bean
-	public CacheManager cacheManager() {
-		return new ConcurrentMapCacheManager();
-	}*/
+	/**
+	 * EhCache library setup.
+	 */
+	@Bean
+	@Autowired
+	public CacheManager cacheManager(net.sf.ehcache.CacheManager ehCache) {
+		return new org.springframework.cache.ehcache.EhCacheCacheManager(ehCache);
+	}
+
+	// TODO: JSR-107 cache manager setup.
+	@Bean
+	public org.springframework.cache.ehcache.EhCacheManagerFactoryBean ehCache() {
+		return new org.springframework.cache.ehcache.EhCacheManagerFactoryBean();
+	}
 
 	/*@Bean
-	public JavaMailSenderImpl mailSender() {
+	public JavaMailSender mailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost(env.getProperty("smtp.host"));
 		mailSender.setPort(env.getProperty("smtp.port", Integer.class));
@@ -51,10 +53,9 @@ public class AppConfig {
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", true);
 		props.put("mail.smtp.starttls.enable", true);
-
 		mailSender.setJavaMailProperties(props);
 
-		return mailSenderImpl;
+		return mailSender;
 	}*/
 
 }

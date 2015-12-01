@@ -10,10 +10,10 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>iyotee-ams-web</artifactId>
+	<artifactId>ams-web</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
-	<name>Iyotee - AboutMe.Social Web Application and API</name>
+	<name>AboutMe.Social Web Application and API</name>
 
 	<!-- Generic properties -->
 	<properties>
@@ -53,12 +53,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.iyotee</groupId>
-			<artifactId>iyotee-ams-util</artifactId>
+			<artifactId>ams-util</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.iyotee</groupId>
-			<artifactId>iyotee-ams-service</artifactId>
+			<artifactId>ams-service</artifactId>
 			<version>1.0</version>
 		</dependency>
 

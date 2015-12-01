@@ -10,10 +10,10 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>iyotee-ams-data</artifactId>
+	<artifactId>ams-data</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
-	<name>Iyotee - AboutMe.Social Data Storage tier</name>
+	<name>AboutMe.Social Data Storage tier</name>
 
 	<!-- Generic properties -->
 	<properties>
@@ -51,7 +51,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.iyotee</groupId>
-			<artifactId>iyotee-ams-util</artifactId>
+			<artifactId>ams-util</artifactId>
 			<version>1.0</version>
 		</dependency>
 

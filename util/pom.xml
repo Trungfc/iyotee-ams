@@ -10,10 +10,10 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>iyotee-ams-util</artifactId>
+	<artifactId>ams-util</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
-	<name>Iyotee - AboutMe.Social Utilities</name>
+	<name>AboutMe.Social Utilities</name>
 
 	<!-- Generic properties -->
 	<properties>
